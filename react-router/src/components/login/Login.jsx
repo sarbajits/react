@@ -1,31 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useState} from 'react';
+import UserContext from '../../context/UserContext';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [online, setOnline] = useState("false");
+
+  const {setUser}=useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can implement the logic for handling login, such as sending credentials to a server.
-    console.log('Login submitted:', { email, password });
-    // Clear form fields after submission
-    setEmail('');
+    setOnline("true");
+    setUser({username,password,online});
+    setUsername('');
     setPassword('');
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
+    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md mb-4">
       <h2 className="text-2xl font-semibold mb-4">Log In</h2>
+      <h3>Online Status: {online}</h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-600">
-            Email:
+          <label htmlFor="username" className="block text-sm font-medium text-gray-600">
+            Username:
           </label>
           <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="username"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
             className="mt-1 p-2 w-full border border-gray-300 rounded-md"
           />

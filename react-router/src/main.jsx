@@ -11,6 +11,8 @@ import Login from './components/login/Login'
 import GetStarted from './components/signup/GetStarted'
 import User from './components/user/User'
 import Github from './components/github/Github'
+import UserContextProvider from './context/UserContextProvider'
+import ThemeProvider from './context/ThemeProvider'
 
 // const router = createBrowserRouter([{
 //   path: '/',
@@ -56,6 +58,10 @@ const router = createBrowserRouter(
 )
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <ThemeProvider>
+    <UserContextProvider>
     <RouterProvider router={router} />
+    </UserContextProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 )
